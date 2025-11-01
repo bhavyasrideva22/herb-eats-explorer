@@ -1,73 +1,149 @@
-# Welcome to your Lovable project
+# Recipe Finder - Herb Eats Explorer
 
-## Project info
+A modern, responsive recipe discovery application built with React, TypeScript, and Tailwind CSS. Explore thousands of delicious recipes, search by ingredient, cuisine, or dietary preference, and save your favorites.
 
-**URL**: https://lovable.dev/projects/62dfec40-ff7d-4012-b980-fc8b793e2ef6
+## Features
 
-## How can I edit this code?
+- 🔍 **Advanced Search** - Search recipes by title, cuisine, or dietary preference
+- ❤️ **Favorites** - Save your favorite recipes with persistent localStorage
+- 🍕 **50+ Recipes** - Browse a diverse collection of recipes from around the world
+- 🎨 **Modern UI** - Beautiful, responsive design with smooth animations
+- 🏷️ **Categories** - Filter by cuisine type (Italian, Thai, Indian, Japanese, etc.)
+- 🥗 **Dietary Filters** - Find vegetarian and vegan options
+- ⚡ **Fast Performance** - Built with Vite for lightning-fast development and builds
 
-There are several ways of editing your application.
+## Technologies
 
-**Use Lovable**
+- **React 18** - Modern React with hooks
+- **TypeScript** - Type-safe development
+- **Vite** - Next-generation frontend tooling
+- **Tailwind CSS** - Utility-first CSS framework
+- **shadcn/ui** - High-quality React components
+- **React Router** - Client-side routing
+- **Lucide React** - Beautiful icon library
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/62dfec40-ff7d-4012-b980-fc8b793e2ef6) and start prompting.
+## Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- Node.js 18+ (recommended: use [nvm](https://github.com/nvm-sh/nvm#installing-and-updating))
+- npm or yarn
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
+1. Clone the repository:
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
 git clone <YOUR_GIT_URL>
+cd herb-eats-explorer
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+2. Install dependencies:
+```sh
+npm install
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Start the development server:
+```sh
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The application will be available at `http://localhost:8080`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Available Scripts
 
-**Use GitHub Codespaces**
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run build:dev` - Build for development
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Project Structure
 
-## What technologies are used for this project?
+```
+herb-eats-explorer/
+├── public/          # Static assets
+├── src/
+│   ├── components/  # React components
+│   │   ├── ui/      # shadcn/ui components
+│   │   ├── Navbar.tsx
+│   │   ├── RecipeCard.tsx
+│   │   └── SearchBar.tsx
+│   ├── data/        # Mock data and recipes
+│   ├── hooks/       # Custom React hooks
+│   ├── pages/       # Page components
+│   ├── lib/         # Utility functions
+│   └── main.tsx     # Entry point
+├── index.html
+└── package.json
+```
 
-This project is built with:
+## Features Overview
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Search Functionality
+- Search recipes by name, cuisine type, or dietary preference
+- Real-time filtering as you type
+- Advanced filters for cuisine and diet
 
-## How can I deploy this project?
+### Favorites
+- Click the heart icon on any recipe card to save favorites
+- Favorites persist across page refreshes using localStorage
+- View all favorites on the dedicated Favorites page
 
-Simply open [Lovable](https://lovable.dev/projects/62dfec40-ff7d-4012-b980-fc8b793e2ef6) and click on Share -> Publish.
+### Recipe Details
+- View full recipe details including:
+  - Ingredients list
+  - Step-by-step instructions
+  - Nutrition information
+  - Cooking time and servings
 
-## Can I connect a custom domain to my Lovable project?
+## Deployment
 
-Yes, you can!
+### Build for Production
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+```sh
+npm run build
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+The production-ready files will be in the `dist/` directory.
+
+### Deploy Options
+
+You can deploy this application to various platforms:
+
+- **Vercel** - Connect your GitHub repo for automatic deployments
+- **Netlify** - Drag and drop the `dist` folder or connect via Git
+- **GitHub Pages** - Use GitHub Actions for automatic deployment
+- **Any static host** - Upload the contents of `dist` folder
+
+## Customization
+
+### Adding Recipes
+
+Edit `src/data/mockRecipes.ts` to add more recipes. Each recipe includes:
+- Title
+- Image URL
+- Cook time
+- Servings
+- Cuisine type
+- Optional dietary preference
+- Rating
+
+### Styling
+
+The project uses Tailwind CSS. Customize colors and styles in `tailwind.config.ts`.
+
+### Components
+
+The UI components are from shadcn/ui and can be customized. Components are located in `src/components/ui/`.
+
+## License
+
+This project is open source and available for personal and commercial use.
+
+## Contributing
+
+Contributions are welcome! Feel free to submit issues or pull requests.
+
+---
+
+Made with ❤️ for food lovers everywhere

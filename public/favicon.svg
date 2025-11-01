@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="12" fill="#E11D48"/>
+  <!-- Chef Hat Top -->
+  <path d="M32 14C28.6863 14 26 16.6863 26 20V22H38V20C38 16.6863 35.3137 14 32 14Z" fill="white" stroke="#E11D48" stroke-width="1.5"/>
+  <!-- Chef Hat Body -->
+  <path d="M20 24H44V50C44 52.2091 42.2091 54 40 54H24C21.7909 54 20 52.2091 20 50V24Z" fill="white"/>
+  <!-- Chef Hat Pleats -->
+  <path d="M26 24V32M32 24V32M38 24V32" stroke="#E11D48" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Chef Hat Button -->
+  <circle cx="32" cy="40" r="2.5" fill="#E11D48"/>
+  <!-- Chef Hat Band -->
+  <rect x="22" y="48" width="20" height="2" fill="#E11D48" rx="1"/>
+</svg>

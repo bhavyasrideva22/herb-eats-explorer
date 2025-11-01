@@ -19,9 +19,13 @@ const SearchResults = () => {
     let results = mockRecipes;
 
     if (query) {
-      results = results.filter((recipe) =>
-        recipe.title.toLowerCase().includes(query.toLowerCase())
-      );
+      const queryLower = query.toLowerCase();
+      results = results.filter((recipe) => {
+        const matchesTitle = recipe.title.toLowerCase().includes(queryLower);
+        const matchesCuisine = recipe.cuisine.toLowerCase().includes(queryLower);
+        const matchesDiet = recipe.diet?.toLowerCase().includes(queryLower);
+        return matchesTitle || matchesCuisine || matchesDiet;
+      });
     }
 
     if (selectedCuisine) {

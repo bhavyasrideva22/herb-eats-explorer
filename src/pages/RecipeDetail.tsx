@@ -5,11 +5,21 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { mockRecipes } from "@/data/mockRecipes";
 import { recipeDetails } from "@/data/mockRecipes";
+import { useFavorites } from "@/hooks/useFavorites";
 
 const RecipeDetail = () => {
   const { id } = useParams();
   const recipe = mockRecipes.find((r) => r.id === id);
   const details = recipeDetails[id || "1"] || recipeDetails["1"];
+  const { isFavorite, toggleFavorite } = useFavorites();
+
+  const handleToggleFavorite = () => {
+    if (id) {
+      toggleFavorite(id);
+    }
+  };
+
+  const favoriteStatus = id ? isFavorite(id) : false;
 
   if (!recipe) {
     return (
@@ -72,9 +82,16 @@ const RecipeDetail = () => {
             </div>
             
             <div className="flex gap-3">
-              <Button className="flex-1 bg-primary hover:bg-primary/90 shadow-accent">
-                <Heart className="mr-2 h-5 w-5" />
-                Save Recipe
+              <Button 
+                onClick={handleToggleFavorite}
+                className={`flex-1 shadow-accent ${
+                  favoriteStatus 
+                    ? "bg-secondary hover:bg-secondary/90" 
+                    : "bg-primary hover:bg-primary/90"
+                }`}
+              >
+                <Heart className={`mr-2 h-5 w-5 ${favoriteStatus ? "fill-current" : ""}`} />
+                {favoriteStatus ? "Saved" : "Save Recipe"}
               </Button>
               <Button variant="outline" size="icon" className="hover:bg-primary/10">
                 <Share2 className="h-5 w-5" />

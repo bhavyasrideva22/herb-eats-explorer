@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Clock, Users, Heart } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useFavorites } from "@/hooks/useFavorites";
 
 export interface Recipe {
   id: string;
@@ -20,13 +20,15 @@ interface RecipeCardProps {
 }
 
 const RecipeCard = ({ recipe }: RecipeCardProps) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+  const { isFavorite, toggleFavorite } = useFavorites();
 
-  const toggleFavorite = (e: React.MouseEvent) => {
+  const handleToggleFavorite = (e: React.MouseEvent) => {
     e.preventDefault();
-    setIsFavorite(!isFavorite);
-    // TODO: Add to localStorage
+    e.stopPropagation();
+    toggleFavorite(recipe.id);
   };
+
+  const favoriteStatus = isFavorite(recipe.id);
 
   return (
     <Link to={`/recipe/${recipe.id}`}>
@@ -42,11 +44,11 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
             variant="ghost"
             size="icon"
             className="absolute top-3 right-3 bg-white/90 hover:bg-white rounded-full shadow-lg backdrop-blur-sm"
-            onClick={toggleFavorite}
+            onClick={handleToggleFavorite}
           >
             <Heart
               className={`h-5 w-5 transition-colors ${
-                isFavorite ? "fill-secondary text-secondary" : "text-foreground"
+                favoriteStatus ? "fill-secondary text-secondary" : "text-foreground"
               }`}
             />
           </Button>

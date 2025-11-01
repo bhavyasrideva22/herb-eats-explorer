@@ -1,18 +1,34 @@
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
+import RecipeCard from "@/components/RecipeCard";
 import { Button } from "@/components/ui/button";
 import { Heart } from "lucide-react";
+import { useFavorites } from "@/hooks/useFavorites";
+import { mockRecipes } from "@/data/mockRecipes";
+import { useMemo } from "react";
 
 const Favorites = () => {
-  // TODO: Implement localStorage for favorites
-  const hasFavorites = false;
+  const { favoriteIds } = useFavorites();
+
+  const favoriteRecipes = useMemo(() => {
+    return mockRecipes.filter((recipe) => favoriteIds.includes(recipe.id));
+  }, [favoriteIds]);
+
+  const hasFavorites = favoriteRecipes.length > 0;
 
   return (
     <div className="min-h-screen">
       <Navbar />
       
       <div className="container mx-auto px-4 py-16">
-        <h1 className="text-4xl font-bold mb-8 text-center">My Favorite Recipes</h1>
+        <div className="flex items-center justify-between mb-8">
+          <h1 className="text-4xl font-bold">My Favorite Recipes</h1>
+          {hasFavorites && (
+            <p className="text-muted-foreground">
+              {favoriteRecipes.length} {favoriteRecipes.length === 1 ? "recipe" : "recipes"}
+            </p>
+          )}
+        </div>
         
         {!hasFavorites ? (
           <div className="text-center py-20">
@@ -31,7 +47,9 @@ const Favorites = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Favorite recipes will be displayed here */}
+            {favoriteRecipes.map((recipe) => (
+              <RecipeCard key={recipe.id} recipe={recipe} />
+            ))}
           </div>
         )}
       </div>

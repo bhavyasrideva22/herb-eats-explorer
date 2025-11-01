@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
-import SearchBar from "@/components/SearchBar";
 import RecipeCard from "@/components/RecipeCard";
 import { Button } from "@/components/ui/button";
 import { mockRecipes } from "@/data/mockRecipes";
@@ -9,15 +8,17 @@ import { Sparkles, Flame, Leaf, Pizza } from "lucide-react";
 
 const Home = () => {
   const navigate = useNavigate();
-  const [featuredRecipes] = useState(mockRecipes.slice(0, 6));
-
-  const handleSearch = (query: string) => {
-    navigate(`/search?q=${encodeURIComponent(query)}`);
-  };
+  const [displayedRecipes, setDisplayedRecipes] = useState(6);
+  const featuredRecipes = mockRecipes.slice(0, displayedRecipes);
+  const hasMoreRecipes = displayedRecipes < mockRecipes.length;
 
   const handleRandomRecipe = () => {
     const randomRecipe = mockRecipes[Math.floor(Math.random() * mockRecipes.length)];
     navigate(`/recipe/${randomRecipe.id}`);
+  };
+
+  const handleLoadMore = () => {
+    setDisplayedRecipes((prev) => Math.min(prev + 6, mockRecipes.length));
   };
 
   return (
@@ -35,10 +36,8 @@ const Home = () => {
               Favorite Recipe
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
-              Search thousands of delicious recipes by ingredient, cuisine, or dietary preference
+              Explore thousands of delicious recipes by browsing our curated collection
             </p>
-            
-            <SearchBar onSearch={handleSearch} />
             
             <Button
               onClick={handleRandomRecipe}
@@ -99,6 +98,19 @@ const Home = () => {
               <RecipeCard key={recipe.id} recipe={recipe} />
             ))}
           </div>
+          
+          {hasMoreRecipes && (
+            <div className="text-center mt-12">
+              <Button
+                onClick={handleLoadMore}
+                variant="outline"
+                size="lg"
+                className="rounded-full border-2 hover:border-primary hover:text-primary transition-all px-8"
+              >
+                Load More Recipes
+              </Button>
+            </div>
+          )}
         </div>
       </section>
     </div>
